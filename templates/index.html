@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>HEART DISEASE RISK PREDICTOR</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <style>
+    body {font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
+ background-blend-mode: normal,color-burn;
+      }
+    * {box-sizing: border-box;}
+
+    input[type=text], select, textarea, option {
+      width: 100%;
+      padding: 12px;
+      color:black;
+      opacity:0.8;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    select{
+      color:black;
+      opacity: 0.8;
+    }
+    
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 5px;
+      }
+      .grid-item {
+        padding: 5px;
+        font-size: 15px;
+        text-align: center;
+      }
+     
+
+    </style>
+ <div>
+   <br><br><br><br>
+	<h1><center>HEART DISEASE RISK PREDICTOR</center></h1>
+<br><br> 
+    <form action="{{ url_for('predict')}}"method="post">
+    <div class="grid-container">
+      <div class="grid-item">Age<input type="text" name="Age" placeholder="30-60" required="required" /></div>
+      <div class="grid-item">Cigarette consumption Per Day<input type="text" name="CigsPerDay" placeholder="Cigs per day" required="required" /></div>
+      <div class="grid-item">Cholestrol<input type="text" name="Cholestrol" placeholder="170-300" required="required" /></div>  
+      <div class="grid-item">Systolic BP<input type="text" name="SysBP" placeholder="100-200" required="required" /></div>
+      <div class="grid-item">Diastolic BP<input type="text" name="DIaBP" placeholder="70-140" required="required" /></div>
+      <div class="grid-item">BMI<input type="text" name="BMI" placeholder="50-140" required="required" /></div>  
+      <div class="grid-item">Heart Rate<input type="text" name="HeartRate" placeholder="60-100" required="required" /></div>
+      <div class="grid-item">Glucose Level<input type="text" name="GlucoseLevel" placeholder="70-400" required="required" /></div>
+      <div class="grid-item">Gender
+        <select name="Gender" id="gender">
+          <option value="" selected disabled hidden>Select Gender</option>
+          <option value = 1>Male</option>
+          <option value = 0>Female</option>
+        </select>
+      </div>
+      <div class="grid-item">BP Medication
+        <select name="BpMedication" id="bpmedication">
+          <option value="" selected disabled hidden>BP Medication</option>
+          <option value = 1 style="color:black;">Yes, taking tablets for BP</option>
+          <option value = 0>No</option>
+        </select>
+      </div>
+      <div class="grid-item">Prevalent Stroke
+        <select name="PrevalentStroke" id="prevalentstroke">
+          <option value="" selected disabled hidden>Prevalent to Stroke</option>
+          <option value = 1>Yes</option>
+          <option value = 0>No</option>
+        </select>
+      </div>
+      <div class="grid-item">Diabetes 
+        <select name="Smoker" id="smoker">
+          <option value="" selected disabled hidden>Diabetic</option>
+          <option value = 1>Yes, I am diabetic</option>
+          <option value = 0>No</option>
+        </select>
+      </div>
+
+
+    </div>
+   <br>
+   <button type="submit" class="btn btn-primary btn-lg btn-block">Predict</button>
+   <center><h3>{{ prediction_text }}</h3></center>
+  </form>
+   
+
+ </div>
+
+</body>
+</html>
